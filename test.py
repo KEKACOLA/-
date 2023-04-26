@@ -82,6 +82,7 @@ def read_excel():
     end = datetime.datetime.now()
     time = end-start
     print('program is running : '+ str(time))
+    print('每15分钟取一次最大值的结果存在当前目录下的record.csv文件')
 
     while True:
         content = input('输入【q + 回车】退出程序')
@@ -149,7 +150,9 @@ def getDataFor15min(startRow, table, endtime):
     big_data5 = max(value_ch5_15min)
     big_data6 = max(value_ch6_15min)
     print('big data in 15min is: '+ str(big_data1)+','+ str(big_data2)+','+ str(big_data3)+','+ str(big_data4)+','+ str(big_data5)+','+ str(big_data6))
-    
+    fp = open('record.csv', 'a+')
+    print(str(big_data1)+','+ str(big_data2)+','+ str(big_data3)+','+ str(big_data4)+','+ str(big_data5)+','+ str(big_data6), file = fp)
+    fp.close()
     
     #15min最大值放入数组
     value_ch1_1mon.append(big_data1)
